@@ -1,0 +1,69 @@
+<h2>Employee Form</h2>
+<div class="form-container">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" type="text" />
+            <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched" class="error">
+                Name is required
+            </div>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" type="email" />
+            <div *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched" class="error">
+                <div *ngIf="myForm.get('email')?.errors?.['required']">Email is required</div>
+                <div *ngIf="myForm.get('email')?.errors?.['email']">Invalid email format</div>
+            </div>
+        </div>
+
+        <div>
+            <label for="designation">Designation</label>
+            <input id="designation" formControlName="designation" type="text" />
+            <div *ngIf="myForm.get('designation')?.invalid && myForm.get('designation')?.touched" class="error">
+                Designation is required
+            </div>
+        </div>
+
+        <div>
+            <label for="dob">Date of Birth</label>
+            <input id="dob" formControlName="dob" type="date" />
+            <div *ngIf="myForm.get('dob')?.invalid && myForm.get('dob')?.touched" class="error">
+                Date of Birth is required
+            </div>
+        </div>
+
+        <div>
+            <label>Gender</label>
+            <div class="radio-group">
+                <div>
+                    <input type="radio" formControlName="gender" value="male" id="male" />
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input type="radio" formControlName="gender" value="female" id="female" />
+                    <label for="female">Female</label>
+                </div>
+                <div>
+                    <input type="radio" formControlName="gender" value="other" id="other" />
+                    <label for="other">Other</label>
+                </div>
+                <div *ngIf="myForm.get('gender')?.invalid && myForm.get('gender')?.touched" class="error">
+                    Gender is required
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="phno">Phone Number</label>
+            <input id="phno" formControlName="phno" type="text" />
+            <div *ngIf="myForm.get('phno')?.invalid && myForm.get('phno')?.touched" class="error">
+                <div *ngIf="myForm.get('phno')?.errors?.['required']">Phone number is required</div>
+                <div *ngIf="myForm.get('phno')?.errors?.['pattern']">Invalid phone number format</div>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="myForm.invalid">Submit</button>
+    </form>
+</div>
